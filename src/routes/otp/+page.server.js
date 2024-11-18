@@ -4,6 +4,9 @@ import { redirect } from '@sveltejs/kit';
 
 export async function load({ url }) {
 	const email = url.searchParams.get('email');
+	if (!email) {
+		throw redirect(303, '/register'); // Redirect to registration page if email is missing
+	}
 	return { email };
 }
 
@@ -12,8 +15,6 @@ export const actions = {
 		const formData = await request.formData();
 		const email = formData.get('email');
 		const otp = formData.get('otp');
-		console.log(email, 'email');
-		console.log(otp, 'otp');
 
 		if (!email || !otp) {
 			return { success: false, message: 'Email and OTP are required', email: email };

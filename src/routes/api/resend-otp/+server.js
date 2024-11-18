@@ -14,16 +14,26 @@ export const POST = async ({ request }) => {
 
 	await connectDB();
 
+	const user = await User.findOne({ email });
+
+	// If OTP exists and has not expired, don't generate a new one
+	if (user && user.otp && user.otpExpiresAt > new Date()) {
+		return new Response(
+			JSON.stringify({ success: false, message: 'An OTP has already been sent.' }),
+			{ status: 400 }
+		);
+	}
+
 	const otp = generateOTP();
 	const otpExpiresAt = new Date(Date.now() + 10 * 60 * 1000);
 
-	const user = await User.findOneAndUpdate(
+	const updatedUser = await User.findOneAndUpdate(
 		{ email },
 		{ otp, otpExpiresAt },
 		{ upsert: true, new: true }
 	);
 
-	if (!user) {
+	if (!updatedUser) {
 		return new Response(JSON.stringify({ success: false, message: 'Failed to update OTP.' }), {
 			status: 500
 		});

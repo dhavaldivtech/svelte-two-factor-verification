@@ -7,7 +7,6 @@ import { generateOTP } from '../../utils/generateOTP';
 export async function load() {
 	await connectDB();
 }
-
 export const actions = {
 	default: async ({ request }) => {
 		const formData = await request.formData();

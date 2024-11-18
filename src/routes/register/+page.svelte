@@ -12,16 +12,6 @@
 
 	async function handleSubmit(event) {
 		loading = true;
-
-		const formData = new FormData(event.target);
-		const email = formData.get('email');
-
-		await fetch('/register', {
-			method: 'POST',
-			body: formData
-		});
-
-		loading = false;
 	}
 </script>
 
@@ -31,7 +21,7 @@
 		<form method="post" on:submit={handleSubmit}>
 			<label for="email">Enter your email:</label>
 			<input type="email" name="email" id="email" bind:value={email} required />
-			<button type="submit" disabled={loading}>
+			<button type="submit" disabled={loading} class="register-btn">
 				{#if loading}
 					<span>Loading...</span>
 				{:else}
