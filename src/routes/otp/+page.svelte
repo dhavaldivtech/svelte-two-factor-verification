@@ -94,7 +94,6 @@
 
 			const result = await response.json();
 			if (result.success) {
-				message = 'OTP verified successfully!';
 				goto(`/register-success?email=${encodeURIComponent(email)}`);
 			} else {
 				message = result.message || 'Invalid OTP. Please try again.';
