@@ -1,8 +1,8 @@
-import vercel from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-vercel';
 
 export default {
 	kit: {
-		adapter: vercel()
-		// Add other configurations if needed
+		// Other configurations
+		adapter: adapter()
 	}
 };
