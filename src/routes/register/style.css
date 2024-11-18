@@ -62,11 +62,15 @@ button:disabled {
 
 
 .centered {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	width: 100%;
+	max-width: 450px; /* Ensuring the container isn't too wide on large screens */
+	padding: 0 15px; /* Add padding for mobile devices */
+	box-sizing: border-box; /* Ensures padding doesn't affect overall width */
 }
 
 .auth-container {
@@ -74,7 +78,6 @@ button:disabled {
   padding: 30px 40px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
   width: 100%;
   text-align: center;
 }
@@ -221,4 +224,47 @@ button[disabled] {
 
 .return-btn:hover {
   background-color: #45a049;
+}
+
+/* Responsive Design for smaller devices */
+@media screen and (max-width: 480px) {
+	.auth-container {
+		padding: 20px 30px;
+	}
+
+	h2 {
+		font-size: 18px;
+	}
+
+	label,
+	button,
+	input[type="email"] {
+		font-size: 14px;
+	}
+
+	button {
+		padding: 10px 15px;
+		font-size: 14px;
+	}
+}
+
+@media screen and (max-width: 360px) {
+	.auth-container {
+		padding: 15px 20px;
+	}
+
+	h2 {
+		font-size: 16px;
+	}
+
+	label,
+	button,
+	input[type="email"] {
+		font-size: 12px;
+	}
+
+	button {
+		padding: 8px 12px;
+		font-size: 12px;
+	}
 }
